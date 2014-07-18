@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>todo app</title>
+  <link rel="stylesheet" href="static/css/bootstrap.css">
+  <link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+  <script src="static/js/jquery.js"></script>
+  <script src="static/js/vue.js"></script>
+  <script src="static/js/app.js"></script>
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+  <![endif]-->
+  <script src="static/js/bootstrap.js"></script>
+</head>
+<body>
+  
+<div class="container" id="list">
+  <div class="col-md-4">
+    <h1>TODO APP</h1>
+    <p>input your task</p>
+    <form class="form-inline todo-form" v-on="submit: addItem($event)">
+      <input class="form-control" type="text" v-model="input">
+      <input type="submit" class="btn" value="送信">
+    </form>
+
+    <h3>USUAL TASKS</h3>
+    <ul class="usual-list list-group">
+      <li class="list-group-item" v-on="click: add('読書')">読書</li>
+      <li class="list-group-item" v-on="click: add('運動')">運動</li>
+      <li class="list-group-item" v-on="click: add('睡眠')">睡眠</li>
+    </ul>
+  {{$data | json}}
+  </div>
+  <div class="col-md-4">
+    <h2>TODO LIST <span>({{list.length}}件)</span></h2>
+    <p class="text-right"><button id="trash" type="button" class="btn btn-default" v-on="click: removeChecked"><span class="glyphicon glyphicon-trash"></span></button></p>
+    <ul class="todo-list list-group">
+      <li v-class="list-group-item-info: todo.complete" class="list-group-item" v-repeat="todo: list">
+      <input type="checkbox" 
+             v-on="change: todo.complete = !todo.complete"
+             value="{{todo.text}}"> {{todo.text}}</li>
+    </ul>
+  </div>
+</div>
+
+
+  
+</body>
+</html>
