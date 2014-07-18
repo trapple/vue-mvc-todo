@@ -39,9 +39,10 @@
     <h2>TODO LIST <span>({{list.length}}件)</span></h2>
     <p class="text-right"><button id="trash" type="button" class="btn btn-default" v-on="click: removeChecked"><span class="glyphicon glyphicon-trash"></span></button></p>
     <ul class="todo-list list-group">
-      <li v-class="list-group-item-info: todo.complete" class="list-group-item" v-repeat="todo: list"
+      <li v-class="list-group-item-info: todo.complete" class="list-group-item" v-repeat="todo: list" 
           v-on="click: todo.complete = !todo.complete">
       <input type="checkbox" v-model="todo.complete" 
+             v-on="click: $event.stopPropagation()"
              value="{{todo.text}}"> {{todo.text}}</li>
     </ul>
   </div>

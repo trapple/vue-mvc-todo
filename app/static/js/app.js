@@ -1,4 +1,5 @@
 $(function () {
+  //Vue.config({prefix: 'data'});
   Todo = new Vue({
     el: "#list",
     data: {
